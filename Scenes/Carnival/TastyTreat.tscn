@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxddtrtc5k5ua"]
+
+[ext_resource type="Script" path="res://Scripts/Carnival/tasty_treat.gd" id="1_bfx0u"]
+[ext_resource type="Texture2D" uid="uid://cin5ddbh31drf" path="res://Assets/EatingEffects.png" id="1_u7ssy"]
+[ext_resource type="Texture2D" uid="uid://dj65hcatyb0rm" path="res://Assets/TastyTreat.png" id="2_g8b3k"]
+[ext_resource type="Script" path="res://Scripts/Utils/grabbable.gd" id="4_rq04u"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1xor3"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+gravity = Vector3(0, 98, 0)
+
+[node name="TastyTreat" type="Node2D" groups=["Food"]]
+script = ExtResource("1_bfx0u")
+
+[node name="FX" type="GPUParticles2D" parent="."]
+visible = false
+texture_filter = 1
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_1xor3")
+texture = ExtResource("1_u7ssy")
+lifetime = 0.2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_g8b3k")
+
+[node name="Grabbable" type="Node" parent="."]
+script = ExtResource("4_rq04u")
+enabled = true
+is_parent_grabbable = true
+grab_size = 4

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7qriimhy7pa3"]
+
+[ext_resource type="Script" path="res://Scripts/Carnival/shop.gd" id="1_ijoou"]
+[ext_resource type="Texture2D" uid="uid://dl4vnram24y1b" path="res://Assets/shop.png" id="2_bc4d7"]
+
+[node name="Shop" type="Node2D" groups=["Shop"]]
+script = ExtResource("1_ijoou")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_bc4d7")

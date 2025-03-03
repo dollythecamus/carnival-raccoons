@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://bp0mfdxkfvag0"]
+
+[ext_resource type="Texture2D" uid="uid://b0skjnjw8j2fo" path="res://Assets/Raccoon.png" id="1_ha0fj"]
+[ext_resource type="Script" path="res://Scripts/Carnival/Animal.gd" id="1_qsb8d"]
+[ext_resource type="Texture2D" uid="uid://bptkivmkx383j" path="res://Assets/walking-raccoon.png" id="3_7rx8x"]
+[ext_resource type="Texture2D" uid="uid://d1u5trws8yyo" path="res://Assets/paws.png" id="3_mjpse"]
+[ext_resource type="Script" path="res://Scripts/Sound/music.gd" id="5_u50w4"]
+[ext_resource type="Script" path="res://Scripts/Utils/grabbable.gd" id="6_yoiep"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2g6u"]
+atlas = ExtResource("3_7rx8x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3v7r"]
+atlas = ExtResource("3_7rx8x")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_myejn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ha0fj")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2g6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3v7r")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwkr7"]
+atlas = ExtResource("3_mjpse")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbls8"]
+atlas = ExtResource("3_mjpse")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yff1n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwkr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbls8")
+}],
+"loop": true,
+"name": &"Playing",
+"speed": 60.0
+}]
+
+[node name="Raccoon" type="Node2D" groups=["Animals"]]
+script = ExtResource("1_qsb8d")
+sprite_path = NodePath("Sprite")
+paws_path = NodePath("Paws")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_myejn")
+animation = &"Idle"
+
+[node name="Paws" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(-1, 7)
+sprite_frames = SubResource("SpriteFrames_yff1n")
+animation = &"Playing"
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource("5_u50w4")
+
+[node name="Grabbable" type="Node" parent="."]
+script = ExtResource("6_yoiep")
+enabled = true
+is_parent_grabbable = true
+
+[connection signal="interupt_music" from="." to="Music" method="interupt"]
+[connection signal="start_playing" from="." to="Music" method="on_start_music"]
+[connection signal="play_note" from="Music" to="." method="on_play_note_once"]

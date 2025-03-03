@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpgqnl0w53on0"]
+
+[ext_resource type="Script" path="res://Scripts/Carnival/Instrument.gd" id="1_h0xe0"]
+[ext_resource type="Script" path="res://Scripts/Utils/grabbable.gd" id="2_uqpyi"]
+
+[node name="Instrument" type="Node2D" groups=["Instrument"]]
+script = ExtResource("1_h0xe0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+max_polyphony = 8
+bus = &"Instruments"
+
+[node name="Grabbable" type="Node" parent="."]
+script = ExtResource("2_uqpyi")
+enabled = true
+is_parent_grabbable = true

@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=3 uid="uid://c37lngxfgd50y"]
+
+[ext_resource type="Script" path="res://Scripts/Utils/debug_draw.gd" id="1_j7mpf"]
+[ext_resource type="PackedScene" uid="uid://cydnj1ix1arnv" path="res://Scenes/Carnival/Carnival.tscn" id="2_1leai"]
+[ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="2_j6xdq"]
+[ext_resource type="Script" path="res://Scripts/UI/StatsPanel.gd" id="3_c2cqj"]
+[ext_resource type="Script" path="res://Scripts/UI/point_counter.gd" id="4_gpmfp"]
+[ext_resource type="Script" path="res://Scripts/UI/point_message.gd" id="5_3nv8v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pvfg"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.298039, 0.298039, 0.298039, 0.835294)
+
+[node name="Game" type="Node"]
+
+[node name="GameLayer" type="CanvasLayer" parent="."]
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
+follow_viewport_enabled = true
+
+[node name="debug_draw" type="Node2D" parent="GameLayer"]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("1_j7mpf")
+
+[node name="Carnival" parent="GameLayer" instance=ExtResource("2_1leai")]
+unique_name_in_owner = true
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("2_j6xdq")
+
+[node name="StatusPanel" type="PanelContainer" parent="GUI/UI"]
+visible = false
+layout_mode = 0
+anchor_left = 0.140625
+anchor_top = 0.188889
+anchor_right = 0.297656
+anchor_bottom = 0.388889
+offset_left = -180.0
+offset_top = -136.0
+offset_right = -171.0
+offset_bottom = -136.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4pvfg")
+script = ExtResource("3_c2cqj")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="GUI/UI/StatusPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="PointCounter" type="Label" parent="GUI/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.040625
+anchor_top = 0.0638889
+anchor_right = 0.222656
+anchor_bottom = 0.227778
+text = "Points!"
+script = ExtResource("4_gpmfp")
+metadata/_edit_use_anchors_ = true
+
+[node name="PointMessage" type="Label" parent="GUI/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.040625
+anchor_top = 0.103
+anchor_right = 0.16
+anchor_bottom = 0.202944
+offset_top = -0.159843
+offset_right = 77.2
+offset_bottom = 50.8802
+scale = Vector2(0.665613, 0.665613)
+text = "Points!"
+script = ExtResource("5_3nv8v")
+metadata/_edit_use_anchors_ = true
+
+[node name="Tasty" type="Button" parent="GUI/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.116406
+anchor_top = 0.915278
+anchor_right = 0.196
+anchor_bottom = 0.967
+offset_right = -68.88
+offset_bottom = -0.240051
+text = "Buy Tasty Treat"
+metadata/_edit_use_anchors_ = true
+
+[node name="Debug" type="CheckButton" parent="GUI/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0078125
+anchor_top = 0.915278
+anchor_right = 0.105
+anchor_bottom = 0.967
+offset_right = -0.400009
+offset_bottom = -0.240051
+text = "Debug
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="GUI/UI/Tasty" to="GUI/UI" method="_on_buy_treat_pressed"]
+[connection signal="toggled" from="GUI/UI/Debug" to="GUI/UI" method="_on_debug_toggled"]

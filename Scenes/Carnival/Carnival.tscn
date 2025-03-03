@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://cydnj1ix1arnv"]
+
+[ext_resource type="PackedScene" uid="uid://bp0mfdxkfvag0" path="res://Scenes/Animals/Raccoon.tscn" id="1_gq7xb"]
+[ext_resource type="Script" path="res://Scripts/Carnival/carnival.gd" id="1_phf3d"]
+[ext_resource type="PackedScene" uid="uid://dv47lb3onbpmj" path="res://Scenes/Instruments/Drum.tscn" id="2_hfk5x"]
+[ext_resource type="Script" path="res://Scripts/Utils/camera_2d.gd" id="2_lq73b"]
+[ext_resource type="PackedScene" uid="uid://bxddtrtc5k5ua" path="res://Scenes/Carnival/TastyTreat.tscn" id="4_c2upb"]
+[ext_resource type="PackedScene" uid="uid://dennq8kiad0ll" path="res://Scenes/Instruments/Keyboard.tscn" id="4_oj40m"]
+[ext_resource type="PackedScene" uid="uid://c7qriimhy7pa3" path="res://Scenes/Carnival/Shop.tscn" id="7_8w5wp"]
+
+[node name="Carnival" type="Node2D"]
+script = ExtResource("1_phf3d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 1.0
+drag_right_margin = 1.0
+editor_draw_drag_margin = true
+script = ExtResource("2_lq73b")
+
+[node name="TastyTreat" parent="." instance=ExtResource("4_c2upb")]
+position = Vector2(-24, -54)
+
+[node name="TastyTreat2" parent="." instance=ExtResource("4_c2upb")]
+position = Vector2(-8, 36)
+
+[node name="TastyTreat3" parent="." instance=ExtResource("4_c2upb")]
+position = Vector2(-308, -3)
+
+[node name="TastyTreat4" parent="." instance=ExtResource("4_c2upb")]
+position = Vector2(344, 2)
+
+[node name="Raccoon" parent="." instance=ExtResource("1_gq7xb")]
+position = Vector2(7, -7)
+
+[node name="Music" parent="Raccoon" index="2"]
+bpm = 400.0
+beat_loop = "a0b0c0aabbcc"
+bars = 2.0
+beats = 6.0
+
+[node name="Raccoon2" parent="." instance=ExtResource("1_gq7xb")]
+position = Vector2(-46, -54)
+
+[node name="Music" parent="Raccoon2" index="2"]
+bpm = 400.0
+beat_loop = "101010111010"
+bars = 2.0
+beats = 6.0
+
+[node name="Drum" parent="." instance=ExtResource("2_hfk5x")]
+position = Vector2(-74, 1)
+
+[node name="Keyboard" parent="." instance=ExtResource("4_oj40m")]
+position = Vector2(65, -1)
+instrument_offset = Vector2(0, -9)
+instrument_type = 2
+
+[node name="Drum2" parent="." instance=ExtResource("2_hfk5x")]
+position = Vector2(-8, 56)
+
+[node name="Shop" parent="." instance=ExtResource("7_8w5wp")]
+position = Vector2(-349, -27)
+
+[node name="Shop2" parent="." instance=ExtResource("7_8w5wp")]
+position = Vector2(382, -17)
+
+[editable path="Raccoon"]
+[editable path="Raccoon2"]
