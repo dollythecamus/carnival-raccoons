@@ -2,17 +2,18 @@ extends Node
 
 @export var enabled = false
 @export var is_parent_grabbable = false
+@export var grab_size = 32
 @export_node_path("Node") var node_to_grabbable 
 
 signal moved(node)
+
+const GRAB_SPEED = 2000.0
 
 var is_grabbed = false:
 	set(v):
 		is_grabbed = v
 		if is_grabbed:
-			get_tree().call_group("Grabbable", "unstuck", self) # fixed stuck
-const GRAB_SPEED = 2000.0
-@export var grab_size = 32
+			get_tree().call_group("Grabbable", "unstuck", self)
 var velocity = Vector2()
 
 var node = null

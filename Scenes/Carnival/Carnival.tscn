@@ -15,31 +15,24 @@ script = ExtResource("1_phf3d")
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 1.0
-drag_right_margin = 1.0
-editor_draw_drag_margin = true
+drag_left_margin = 0.75
+drag_right_margin = 0.75
+editor_draw_screen = false
 script = ExtResource("2_lq73b")
 
-[node name="TastyTreat" parent="." instance=ExtResource("4_c2upb")]
-position = Vector2(-24, -54)
+[node name="Shop" parent="." instance=ExtResource("7_8w5wp")]
+position = Vector2(-324, -27)
 
-[node name="TastyTreat2" parent="." instance=ExtResource("4_c2upb")]
-position = Vector2(-8, 36)
-
-[node name="TastyTreat3" parent="." instance=ExtResource("4_c2upb")]
-position = Vector2(-308, -3)
-
-[node name="TastyTreat4" parent="." instance=ExtResource("4_c2upb")]
-position = Vector2(344, 2)
+[node name="Shop2" parent="." instance=ExtResource("7_8w5wp")]
+position = Vector2(324, -17)
 
 [node name="Raccoon" parent="." instance=ExtResource("1_gq7xb")]
+z_index = -2
 position = Vector2(7, -7)
 
 [node name="Music" parent="Raccoon" index="2"]
-bpm = 400.0
-beat_loop = "a0b0c0aabbcc"
-bars = 2.0
-beats = 6.0
+beat_loop = "babab08060505"
+bars = 3.0
 
 [node name="Raccoon2" parent="." instance=ExtResource("1_gq7xb")]
 position = Vector2(-46, -54)
@@ -51,7 +44,7 @@ bars = 2.0
 beats = 6.0
 
 [node name="Drum" parent="." instance=ExtResource("2_hfk5x")]
-position = Vector2(-74, 1)
+position = Vector2(-2, -50)
 
 [node name="Keyboard" parent="." instance=ExtResource("4_oj40m")]
 position = Vector2(65, -1)
@@ -61,11 +54,17 @@ instrument_type = 2
 [node name="Drum2" parent="." instance=ExtResource("2_hfk5x")]
 position = Vector2(-8, 56)
 
-[node name="Shop" parent="." instance=ExtResource("7_8w5wp")]
-position = Vector2(-349, -27)
+[node name="TastyTreat" parent="." instance=ExtResource("4_c2upb")]
+position = Vector2(-99, -49)
 
-[node name="Shop2" parent="." instance=ExtResource("7_8w5wp")]
-position = Vector2(382, -17)
+[node name="TastyTreat2" parent="." instance=ExtResource("4_c2upb")]
+position = Vector2(-8, 36)
+
+[node name="TastyTreat3" parent="." instance=ExtResource("4_c2upb")]
+position = Vector2(-308, -3)
+
+[node name="TastyTreat4" parent="." instance=ExtResource("4_c2upb")]
+position = Vector2(344, 2)
 
 [editable path="Raccoon"]
 [editable path="Raccoon2"]

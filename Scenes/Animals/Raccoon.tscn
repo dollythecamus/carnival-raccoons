@@ -83,7 +83,9 @@ script = ExtResource("5_u50w4")
 script = ExtResource("6_yoiep")
 enabled = true
 is_parent_grabbable = true
+grab_size = 16
 
 [connection signal="interupt_music" from="." to="Music" method="interupt"]
 [connection signal="start_playing" from="." to="Music" method="on_start_music"]
 [connection signal="play_note" from="Music" to="." method="on_play_note_once"]
+[connection signal="moved" from="Grabbable" to="." method="_on_grabbable_moved"]

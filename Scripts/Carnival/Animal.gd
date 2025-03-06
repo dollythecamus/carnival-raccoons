@@ -99,7 +99,6 @@ func run_clock():
 		Playing:
 			check_if_close_to_food()
 			if wants_to_play <= 0.1:
-				state = Walking
 				to_interupt_music()
 			else:
 				to_add_points(Points.PLAYING, Points.Reasons.Playing)
@@ -134,6 +133,8 @@ func to_add_points(many, reason):
 func to_interupt_music():
 	if state == Playing:
 		state = Walking
+	else:
+		return
 	interupt_music.emit()
 	disconnect_from_instrument()
 
@@ -195,3 +196,7 @@ func disconnect_from_instrument():
 	if playing_instrument.grab.moved.is_connected(on_instrument_moved):
 		playing_instrument.grab.moved.disconnect(on_instrument_moved)
 	playing_instrument = null
+
+
+func _on_grabbable_moved(node: Variant) -> void:
+	to_interupt_music()

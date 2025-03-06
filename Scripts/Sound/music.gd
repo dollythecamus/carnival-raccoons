@@ -34,10 +34,12 @@ func get_note(i, loop):
 		return r.hex_to_int()
 
 func interupt():
-	beat_index = -5
+	beat_index = -100
 
 func on_start_music():
 	beat_index = 0
+	if not MusicSync.playing:
+		MusicSync.start_sync()
 	await MusicSync.sync_loop
 	run_music_clock()
 

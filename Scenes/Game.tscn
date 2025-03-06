@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://c37lngxfgd50y"]
+[gd_scene load_steps=10 format=3 uid="uid://c37lngxfgd50y"]
 
+[ext_resource type="Texture2D" uid="uid://dyayh4v5hu4vh" path="res://Assets/background.png" id="1_f7aty"]
 [ext_resource type="Script" path="res://Scripts/Utils/debug_draw.gd" id="1_j7mpf"]
 [ext_resource type="PackedScene" uid="uid://cydnj1ix1arnv" path="res://Scenes/Carnival/Carnival.tscn" id="2_1leai"]
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="2_j6xdq"]
 [ext_resource type="Script" path="res://Scripts/UI/StatsPanel.gd" id="3_c2cqj"]
 [ext_resource type="Script" path="res://Scripts/UI/point_counter.gd" id="4_gpmfp"]
+[ext_resource type="Texture2D" uid="uid://b65b28lvpf7si" path="res://Assets/confeti.png" id="4_jefo2"]
 [ext_resource type="Script" path="res://Scripts/UI/point_message.gd" id="5_3nv8v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pvfg"]
@@ -15,6 +17,17 @@ content_margin_bottom = 5.0
 bg_color = Color(0.298039, 0.298039, 0.298039, 0.835294)
 
 [node name="Game" type="Node"]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
+follow_viewport_enabled = true
+
+[node name="Background" type="Sprite2D" parent="Background"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_f7aty")
 
 [node name="GameLayer" type="CanvasLayer" parent="."]
 scale = Vector2(3, 3)
@@ -29,7 +42,19 @@ script = ExtResource("1_j7mpf")
 [node name="Carnival" parent="GameLayer" instance=ExtResource("2_1leai")]
 unique_name_in_owner = true
 
+[node name="Foreground" type="CanvasLayer" parent="."]
+layer = 5
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
+follow_viewport_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Foreground"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("4_jefo2")
+
 [node name="GUI" type="CanvasLayer" parent="."]
+layer = 10
 
 [node name="UI" type="Control" parent="GUI"]
 unique_name_in_owner = true
